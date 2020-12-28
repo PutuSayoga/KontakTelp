@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Kontak>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List Kontak</h1>
+
+<p>
+    <a asp-action="UpSert">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NamaDepan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NamaBelakang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoTelp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TanggalLahir)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <label>@item.NamaDepan</label>
+                </td>
+                <td>
+                    <label>@item.NamaBelakang</label>
+                </td>
+                <td>
+                    <label>@item.Email</label>
+                </td>
+                <td>
+                    <label>@item.NoTelp</label>
+                </td>
+                <td>
+                    <label>@item.TanggalLahir.ToString("dd MMM yyyy")</label>
+                </td>
+                <td>
+                    <a asp-action="UpSert" asp-route-id="@item.Id">Edit</a> | 
+                    <a asp-action="Detail" asp-route-id="@item.Id">Details</a> | 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
