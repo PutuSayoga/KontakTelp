@@ -14,7 +14,7 @@ namespace KontakTelpon.Models
         {
             Id = ++_counter;
         }
-        public int Id { get; }
+        public int Id { get; set; }
         public string NamaDepan { get; set; }
         public string NamaBelakang { get; set; }
         public string Email { get; set; }
