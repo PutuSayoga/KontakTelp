@@ -9,6 +9,11 @@
 <p>
     <a asp-action="UpSert">Create New</a>
 </p>
+<div id="app">
+    {{greeting}}
+    <br />
+    {{message}}
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -58,3 +63,15 @@
         }
     </tbody>
 </table>
+
+@section Scripts{ 
+<script>
+    var vueObject = new Vue({
+        el: '#app',
+        data: {
+            greeting: "Hi there, I'm Vue",
+            message: "In this page we will see list of all kontak that we have"
+        }
+    })
+</script>
+}
