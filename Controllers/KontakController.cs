@@ -58,5 +58,12 @@ namespace KontakTelpon.Controllers
             _repo.DeleteKontakById(id);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        [Route("Api/Kontak/Detail")]
+        public IActionResult Detail(int id)
+        {
+            return Json(_repo.GetKontakById(id));
+        }
     }
 }

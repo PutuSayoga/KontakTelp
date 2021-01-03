@@ -1,0 +1,2 @@
+#issue1 = Error saat menampilkan data pada modal
+* mungkin salah di selectornya
