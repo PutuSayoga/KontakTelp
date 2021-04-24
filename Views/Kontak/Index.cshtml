@@ -46,7 +46,7 @@
                 <td>
                     <a asp-action="UpSert" asp-route-id="@item.Id">Edit</a>
                     &nbsp;
-                    <a onclick="DetailKontakModal(@item.Id)" data-toggle="modal" data-target="theModal">Details</a>
+                    <a onclick="MakeCall(@item.Id)" data-toggle="modal" data-target="#theModal">Details</a>
                     &nbsp;
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
@@ -66,11 +66,11 @@
             <div class="modal-body">
                 <div class="form-group">
                     <span class="control-label">Nama Depan:&nbsp;</span>
-                    <span value="Hello" name="namaDepan" class="control-label"></span>
+                    <span name="namaDepan" class="control-label"></span>
                 </div>
                 <div class="form-group">
                     <span class="control-label">Nama Belakang:&nbsp;</span>
-                    <label value="Hello" name="namaBelakang" class="control-label"></label>
+                    <label name="namaBelakang" class="control-label"></label>
                 </div>
                 <div class="form-group">
                     <span class="control-label">Email:&nbsp;</span>
@@ -82,7 +82,7 @@
                 </div>
                 <div class="form-group">
                     <span class="control-label">Tanggal Lahir:&nbsp;</span>
-                    <span name="tglLahir" class="control-label">ddfs</span>
+                    <span name="tglLahir" class="control-label"></span>
                 </div>
                 <button class="btn btn-secondary float-right" data-dismiss="modal">OK</button>
             </div>
@@ -93,14 +93,19 @@
 
 @section Scripts{
     <script>
-        function DetailKontakModal(id) {
-            $.get(`/Api/Kontak/Detail?id=${id}`, (data) => {
-                $('#theModal [name="namaDepan"]').innerHTML = data.namaDepan;
-                $('#theModal [name="namaBelakang"]').val(data.namaBelakang);
-                $('#theModal [name="email"]').val(data.email);
-                $('#theModal [name="noTelepon"]').val(data.noTelp);
-                $('#theModal [name="tglLahir"]').val(data.tanggalLahir);
-                $('#theModal').modal('show');
+        function MakeCall(id) {
+            $.ajax({
+                url: `/Api/Kontak/Detail?id=${id}`,
+                type: `GET`,
+                success: (result) => {
+                    console.log(result);
+                    $("#theModal [name='namaDepan']").text(result.namaDepan);
+                    $("#theModal [name='namaBelakang']").text(result.namaBelakang);
+                    $("#theModal [name='email']").text(result.email);
+                    $("#theModal [name='noTelepon']").text(result.noTelp);
+                    $("#theModal [name='tglLahir']").text(result.tanggalLahir);
+                    $("#theModal").modal('show');
+                }
             });
         }
     </script>
